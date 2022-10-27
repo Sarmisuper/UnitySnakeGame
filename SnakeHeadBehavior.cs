@@ -17,6 +17,7 @@ public class SnakeHeadBehavior : MonoBehaviour
         {
             transform.position += new Vector3(-1, 0, 0);
             direction = "Left";
+            direction = "Left";
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && direction!="Right")
         {
