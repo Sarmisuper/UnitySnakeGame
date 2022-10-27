@@ -13,22 +13,22 @@ public class SnakeHeadBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && direction!="Left")
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && direction!="Left" && direction!="Right")
         {
             transform.position += new Vector3(-1, 0, 0);
             direction = "Left";
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && direction!="Right")
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && direction!="Right" && direction!="Left")
         {
             transform.position += new Vector3(1, 0, 0);
             direction = "Right";
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && direction!="Up")
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && direction!="Up" && direction!="Down")
         {
             transform.position += new Vector3(0, 1, 0);
             direction = "Up";
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && direction!="Down")
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && direction!="Down" && direction!="Up")
         {
             transform.position += new Vector3(0, -1, 0);
             direction = "Down";
