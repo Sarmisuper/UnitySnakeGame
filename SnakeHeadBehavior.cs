@@ -38,9 +38,14 @@ public class SnakeHeadBehavior : MonoBehaviour
                 isQueuedAction = true;
             }
         }
-
+        
         if (Time.frameCount % 100 == 0)
         {
+            float blocksToMove = Camera.current.orthographicSize;
+            Debug.Log($"Aspect:{Camera.current.aspect}");
+            Debug.Log($"Orthsize:{Camera.current.orthographicSize}");
+
+            
             switch (direction)
             {
                 case "Right": transform.position += new Vector3(1, 0, 0);
