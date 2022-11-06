@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SnakeHeadBehavior : MonoBehaviour
@@ -7,10 +8,15 @@ public class SnakeHeadBehavior : MonoBehaviour
     
     public string direction;
     public bool isQueuedAction;
+    public float screenHeight;
+    public float screenWidth;
+    
     void Start()
     {
         direction = "Right";
         isQueuedAction = false;
+        screenHeight = Camera.main.GameObject().GetComponent<CameraScript>().Height;
+        screenWidth = Camera.main.GameObject().GetComponent<CameraScript>().Width;
     }
 
     void Update()
@@ -39,22 +45,49 @@ public class SnakeHeadBehavior : MonoBehaviour
             }
         }
         
-        if (Time.frameCount % 100 == 0)
+        if (Time.frameCount % 150 == 0)
         {
-            float blocksToMove = Camera.current.orthographicSize;
-            Debug.Log($"Aspect:{Camera.current.aspect}");
-            Debug.Log($"Orthsize:{Camera.current.orthographicSize}");
-
-            
             switch (direction)
             {
-                case "Right": transform.position += new Vector3(1, 0, 0);
+                case "Right":
+                    if (transform.position.x == screenWidth-0.5)
+                    {
+                        transform.position -= new Vector3(2*screenWidth-1, 0, 0);
+                    }
+                    else
+                    {
+                        transform.position += new Vector3(1, 0, 0);
+                    }
                     break;
-                case "Left": transform.position += new Vector3(-1, 0, 0);
+                case "Left":
+                    if (transform.position.x == -(screenWidth-0.5))
+                    {
+                        transform.position += new Vector3(2*screenWidth-1, 0, 0);
+                    }
+                    else
+                    {
+                        transform.position += new Vector3(-1, 0, 0);
+                    }
                     break;
-                case "Up": transform.position += new Vector3(0, 1, 0);
+                case "Up":
+                    if (transform.position.y == screenHeight-0.5)
+                    {
+                        transform.position -= new Vector3(0, 2*screenHeight-1, 0);
+                    }
+                    else
+                    {
+                        transform.position += new Vector3(0, 1, 0);
+                    }
                     break;
-                case "Down": transform.position += new Vector3(0, -1, 0);
+                case "Down":
+                    if (transform.position.y == -(screenHeight-0.5))
+                    {
+                        transform.position += new Vector3(0, 2*screenHeight-1, 0);
+                    }
+                    else
+                    {
+                        transform.position += new Vector3(0, -1, 0);
+                    }
                     break;
             }
 
